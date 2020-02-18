@@ -53,8 +53,9 @@
                                 <td><span class="btn btn-default" th:text="${file.author}"></span></td>
                                 <td><span class="btn btn-default" th:text="${file.uploadDatetime.format(format)}"></span></td>
                                 <td><span class="btn btn-default" th:text="${file.filetype}"></span></td>
-                                <td><img class="img-thumbnail" width="500" th:src="@{|/load/${file.id}|}"
-                                         alt="附件图片">
+                                <td>
+                                    <span th:if="${imgUtil.isAllowImg(file.extName) eq true}"><img class="img-thumbnail" width="500" th:src="@{|/load/${file.id}|}" alt="资源预览"></span>
+                                    <span th:if="${imgUtil.isAllowImg(file.extName) eq false}"><img class="img-thumbnail" width="500" th:src="@{/file.png}" alt="资源预览"></span>
                                 </td>
                                 <td><span><a class="btn btn-default" th:href="@{|/upload/del/${file.id}|}" onclick="return confirm('真的要删除选项吗？');">删除</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a class="btn btn-default" th:href="@{|/load/${file.id}|}" target="_blank">下载</a></span></td>
                             </tr>

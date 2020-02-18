@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.py.sweb.mapper.Sort;
 import org.py.sweb.model.Upfiles;
 import org.py.sweb.service.UpfileService;
+import org.py.sweb.sys.util.ImgUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -40,6 +41,8 @@ import java.util.stream.Collectors;
 public class UploadController {
     @Autowired
     private UpfileService upfileService;
+    @Autowired
+    private ImgUtil imgUtil;
     /**
      * 分页显示文件列表时使用的每页记录条数，读取配置文件中的自定义设置
      * */
@@ -130,6 +133,7 @@ public class UploadController {
         model.addAttribute("title", "上传文件资源");
         model.addAttribute("format", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("imgUtil", imgUtil);
         return "index/upload/list";
     }
     @GetMapping({"del/{id}"})
