@@ -2,6 +2,7 @@ package org.py.sweb;
 
 import org.junit.jupiter.api.Test;
 import org.py.sweb.mapper.Sort;
+import org.springframework.http.ResponseEntity;
 
 import java.io.*;
 import java.math.BigInteger;
@@ -79,5 +80,9 @@ public class CommonsTest {
         } catch(MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+    @Test
+    public void responseTest() {
+        ResponseEntity<String> body = ResponseEntity.ok().body("hello world.");
     }
 }

@@ -7,6 +7,10 @@ spring:
       password: 123
   thymeleaf:
     cache: false
+  servlet:
+    multipart:
+      max-file-size: 512MB
+      max-request-size: 512MB
 logging:
   level:
     org.py.sweb.mapper: debug

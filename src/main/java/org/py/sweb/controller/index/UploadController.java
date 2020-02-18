@@ -51,29 +51,14 @@ public class UploadController {
      * */
     @GetMapping(value = {"img/{id}"}, produces = MediaType.IMAGE_JPEG_VALUE)
     @ResponseBody
-    public byte[] img(@PathVariable Long id) {
+    public ResponseEntity img(@PathVariable Long id) {
         Assert.notNull(id, "必须指定资源ID！");
         Assert.isTrue(0 <= id, "不支持的资源ID！");
         Upfiles entity = upfileService.selectById(id);
         Assert.notNull(entity, "未找到指定资源！");
-        return entity.getContent();
-    }
-
-    /**
-     * 上传文件下载接口
-     * */
-    @GetMapping({"download/{id}"})
-    public ResponseEntity fileDownload(HttpServletResponse response, @PathVariable Long id, Model model) {
-        Upfiles file = upfileService.selectById(id);
-        String filetype = file.getFiletype();
-        String extName = "." + filetype.substring(filetype.lastIndexOf("/") + 1);
-        ByteArrayResource resource = new ByteArrayResource(file.getContent());
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment;fileName=" + file.getTitle() + extName);
         return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .headers(headers)
-                .body(resource);
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(entity.getContent());
     }
 
     @GetMapping({""})
@@ -135,7 +120,7 @@ public class UploadController {
      * 上传文件列表展示功能
      * */
     @GetMapping({"list", "list/{offset}"})
-    public String list(Model model, @PathVariable(required = false) Integer offset) {
+    public String list(HttpServletResponse response, Model model, @PathVariable(required = false) Integer offset) throws IOException {
         offset = null == offset ? 1 : offset;
         offset = offset < 1 ? 1 : offset;
         PageHelper.offsetPage((offset - 1) * limit, limit);
