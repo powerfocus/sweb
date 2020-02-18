@@ -46,9 +46,9 @@ public class UploadController {
     @Value("${page_limit}")
     private int limit;
 
-    /**
+   /* *//**
      * 读取图片文件，并以字节码的形式输出给客户端
-     * */
+     * *//*
     @GetMapping(value = {"img/{id}"}, produces = MediaType.IMAGE_JPEG_VALUE)
     @ResponseBody
     public ResponseEntity img(@PathVariable Long id) {
@@ -59,7 +59,7 @@ public class UploadController {
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(entity.getContent());
-    }
+    }*/
 
     @GetMapping({""})
     public String form() {

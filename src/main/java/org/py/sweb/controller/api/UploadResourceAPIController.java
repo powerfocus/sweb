@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/")
-public class ResourceController {
+public class UploadResourceAPIController {
     @Autowired
     private UpfileService upfileService;
 
