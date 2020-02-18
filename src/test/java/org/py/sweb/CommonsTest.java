@@ -1,18 +1,21 @@
 package org.py.sweb;
 
 import org.junit.jupiter.api.Test;
+import org.py.sweb.controller.api.ImgType;
 import org.py.sweb.mapper.Sort;
 import org.springframework.http.ResponseEntity;
 
 import java.io.*;
-import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -84,5 +87,17 @@ public class CommonsTest {
     @Test
     public void responseTest() {
         ResponseEntity<String> body = ResponseEntity.ok().body("hello world.");
+    }
+    @Test
+    public void arraySearch() {
+        /*Optional<String> opt = ImgType.allowImgNames().stream().filter(name -> name.equalsIgnoreCase("PNGB")).findFirst();
+        String re = opt.orElse("NON");
+        if(re.equalsIgnoreCase("NON"))
+            System.out.println(false);
+        else
+            System.out.println(true);*/
+        System.out.println(ImgType.allowImgNames());
+        Collections.sort(ImgType.allowImgNames());
+        System.out.println(ImgType.allowImgNames());
     }
 }

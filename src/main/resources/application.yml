@@ -20,3 +20,4 @@ page_limit: 5
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+allowImgs: PNG BMP JPG JPEG GIF TIFF DIB ICO TIF HEIC
