@@ -49,7 +49,7 @@
                             <tbody style="font-weight: bold;">
                             <tr th:each="file: ${upfiles}">
                                 <td><span class="btn btn-primary" th:text="${file.id}"></span></td>
-                                <td><span class="btn btn-default" th:text="${file.title}"></span></td>
+                                <td><span class="btn btn-default" th:text="${file.title+file.extName}"></span></td>
                                 <td><span class="btn btn-default" th:text="${file.author}"></span></td>
                                 <td><span class="btn btn-default" th:text="${file.uploadDatetime.format(format)}"></span></td>
                                 <td><span class="btn btn-default" th:text="${file.filetype}"></span></td>

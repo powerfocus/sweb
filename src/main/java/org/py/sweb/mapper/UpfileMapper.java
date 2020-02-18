@@ -11,9 +11,8 @@ import java.util.List;
 public interface UpfileMapper extends Mapper<Upfiles> {
     final String TABLE = "upfiles";
 
-    @Update({"update ", TABLE, " set title=${title}, author=${author}," +
-            "filetype=${filetype}, upload_datetime=${uploadDatetime}," +
-            "content=${content}"})
+    @Update({"update ", TABLE, " set title=${title}, author=${author}, ext_name=${extName}, descr=${descr}",
+            "filetype=${filetype}, upload_datetime=${uploadDatetime},", "content=${content}"})
     int update(Upfiles entity);
 
     @Select({"select * from ", TABLE, " where id=${id}"})

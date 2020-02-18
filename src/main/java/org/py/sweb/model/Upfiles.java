@@ -22,6 +22,7 @@ public class Upfiles implements Serializable {
     private String author;
     private String filetype;
     private String extName;
+    private String descr;
     private LocalDateTime uploadDatetime;
     private byte[] content;
 }

@@ -28,10 +28,11 @@ CREATE TABLE `upfiles` (
   `author` varchar(45) NOT NULL,
   `filetype` varchar(45) NOT NULL,
   `ext_name` varchar(20) NOT NULL,
+  `descr` varchar(50) DEFAULT NULL,
   `upload_datetime` datetime DEFAULT NULL,
   `content` longblob NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,4 +59,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-18 12:30:50
+-- Dump completed on 2020-02-18 21:36:15
