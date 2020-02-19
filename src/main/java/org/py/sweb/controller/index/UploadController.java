@@ -9,13 +9,8 @@ import org.py.sweb.service.UpfileService;
 import org.py.sweb.sys.util.ImgUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
@@ -75,8 +70,10 @@ public class UploadController {
     @PostMapping({""})
     public String action(@RequestParam("upfs") MultipartFile[] files, String author,
                          Model model) throws IOException {
-        List<MultipartFile> tlist = Arrays.stream(files).filter(f -> !f.isEmpty()).collect(Collectors.toList());
-        if(tlist.size() == 0) {
+        List<MultipartFile> tmpList = Arrays.stream(files)
+                .filter(f -> !f.isEmpty())
+                .collect(Collectors.toList());
+        if(tmpList.size() == 0) {
             model.addAttribute("icon", ":(");
             model.addAttribute("msg", "未选择任何文件，没有文件被保存！");
             model.addAttribute("href", "/upload");
@@ -89,8 +86,11 @@ public class UploadController {
                     byte[] bytes = f.getBytes();
                     String contentType = f.getContentType();
                     String originalName = f.getOriginalFilename();
+                    Assert.notNull(originalName, "文件名不能为空！");
                     String extName = originalName.substring(originalName.lastIndexOf("."));
-                    String fileName = DigestUtils.md5DigestAsHex(LocalDateTime.now().toString().getBytes()) + UUID.randomUUID().toString().substring(0, 20).replace("-", "");
+                    String fileName = DigestUtils.md5DigestAsHex(LocalDateTime.now().toString().getBytes()) +
+                                UUID.randomUUID().toString().substring(0, 20)
+                                        .replace("-", "");
                     Upfiles entity = Upfiles.builder()
                             .title(fileName)
                             .author(author)
