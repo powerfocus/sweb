@@ -16,6 +16,49 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `article`
+--
+
+DROP TABLE IF EXISTS `article`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `article` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(80) NOT NULL,
+  `small_title` varchar(50) DEFAULT NULL,
+  `author` varchar(45) NOT NULL,
+  `source` varchar(100) NOT NULL,
+  `resource_id` int(10) unsigned DEFAULT NULL,
+  `publish_datetime` datetime DEFAULT NULL,
+  `art_lock` tinyint(4) DEFAULT NULL,
+  `keyword` text,
+  `user_group` varchar(100) DEFAULT NULL,
+  `clicks` int(10) unsigned DEFAULT NULL,
+  `thumbnail` text,
+  `album` text,
+  `content` longtext,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `resources`
+--
+
+DROP TABLE IF EXISTS `resources`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `resources` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `res_name` varchar(80) NOT NULL,
+  `source` varchar(80) NOT NULL,
+  `belong_id` int(10) unsigned NOT NULL,
+  `content` longblob NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `upfiles`
 --
 
@@ -59,4 +102,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-18 21:36:15
+-- Dump completed on 2020-02-20 22:19:51
