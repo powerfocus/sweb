@@ -13,10 +13,16 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><h1>添加新文章</h1></div>
                     <div class="panel-body">
-                        <form action="" method="post">
+                        <form method="post" th:action="@{/art}" th:object="${article}">
+                            <div>
+                                <ul th:if="${#fields.hasErrors('*')}">
+                                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                                </ul>
+                            </div>
                             <div class="form-group">
                                 <label class="" for="title">文章标题</label>
-                                <input class="form-control" name="title" id="title" type="text" />
+                                <input th:field="*{title}" class="form-control" name="title" id="title" type="text" />
+                                <span class="fieldError" th:if="${#fields.hasErrors('*{title}')}" th:errors="*{title}"></span>
                             </div>
                             <div class="form-group">
                                 <label class="" for="smalltitle">短标题</label>
@@ -24,15 +30,15 @@
                             </div>
                             <div class="form-group">
                                 <label class="" for="source">来源</label>
-                                <select name="source" id="source">
+                                <select th:field="*{source}" class="form-control" name="source" id="source">
                                     <option value="网络">网络</option>
                                     <option value="原创">原创</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="" for="">是否锁定</label>
-                                <input name="lock" id="lockFalse" type="radio" checked="checked" value="0" />未锁定
-                                <input name="lock" id="lockTrue" type="radio" value="1" />锁定
+                                <input th:field="*{artLock}" name="lock" id="lockFalse" type="radio" value="0" />未锁定
+                                <input th:field="*{artLock}" name="lock" id="lockTrue" type="radio" value="1" />锁定
                             </div>
                             <div class="form-group">
                                 <label for="content">文章内容</label>

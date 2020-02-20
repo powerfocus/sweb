@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,21 +15,20 @@ import javax.validation.Valid;
 @RequestMapping("/art")
 public class ArticleController {
     @GetMapping({""})
-    public String index(Article art) {
+    public String index(@ModelAttribute Article article) {
+        article.setArtLock(false);
         return "index/article/index";
     }
 
     @PostMapping({""})
-    public String action(@Valid Article art, Model model, BindingResult errors) {
-        if(errors.hasErrors()) {
-            System.out.println("验证时发生错误：");
-            errors.getAllErrors().forEach(System.out::printlng);
+    public String action(@Valid Article article, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            result.getAllErrors().forEach(System.out::println);
             return "index/article/index";
-        } else {
-            model.addAttribute("icon", ":)");
-            model.addAttribute("href", "index/article/index");
-            model.addAttribute("msg", "保存文章成功！");
-            return "msg";
         }
+        model.addAttribute("icon", ":)");
+        model.addAttribute("msg", "操作成功！");
+        model.addAttribute("target", "/art");
+        return "msg";
     }
 }

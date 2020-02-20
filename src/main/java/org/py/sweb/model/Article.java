@@ -22,15 +22,15 @@ public class Article implements Serializable {
     private String smallTitle;
     private String author;
     private String source;
-    @NotNull(message = "资源ID不能为空")
     private Long resourceId;
     private LocalDateTime publishDatetime;
+    @NotNull(message = "必须指定文章是否锁定")
     private Boolean artLock;
     private String keyword;
     private String userGroup;
     private Integer clicks;
     private String thumbnail;
     private String album;
-    @NotNull(message = "文章内容不能为空")
+    @NotEmpty(message = "文章内容不能为空")
     private String content;
 }
