@@ -1,4 +1,4 @@
-package org.py.sweb.service;
+package org.py.sweb.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -6,6 +6,7 @@ import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
 import org.py.sweb.mapper.Sort;
 import org.py.sweb.model.Upfiles;
+import org.py.sweb.service.UpfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

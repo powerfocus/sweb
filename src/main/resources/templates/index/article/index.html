@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加新文章</title>
+    <th:block th:replace="~{layouts/bootstrap::bootstrap}" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <br />
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h1>添加新文章</h1></div>
+                    <div class="panel-body">
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label class="" for="title">文章标题</label>
+                                <input class="form-control" name="title" id="title" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label class="" for="smalltitle">短标题</label>
+                                <input class="form-control" name="smalltitle" id="smalltitle" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label class="" for="source">来源</label>
+                                <select name="source" id="source">
+                                    <option value="网络">网络</option>
+                                    <option value="原创">原创</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="" for="">是否锁定</label>
+                                <input name="lock" id="lockFalse" type="radio" checked="checked" value="0" />未锁定
+                                <input name="lock" id="lockTrue" type="radio" value="1" />锁定
+                            </div>
+                            <div class="form-group">
+                                <label for="content">文章内容</label>
+                                <textarea class="form-control" name="content" id="content" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-primary" type="submit" value="保存" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#title').focus();
+        });
+    </script>
+</body>
+</html>

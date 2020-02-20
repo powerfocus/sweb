@@ -1,8 +1,9 @@
-package org.py.sweb.service;
+package org.py.sweb.service.impl;
 
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
 import org.py.sweb.model.User;
+import org.py.sweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
