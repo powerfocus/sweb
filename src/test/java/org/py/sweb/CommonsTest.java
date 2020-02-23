@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -99,5 +100,9 @@ public class CommonsTest {
         System.out.println(ImgType.allowImgNames());
         Collections.sort(ImgType.allowImgNames());
         System.out.println(ImgType.allowImgNames());
+    }
+    @Test
+    public void pathTest() {
+
     }
 }

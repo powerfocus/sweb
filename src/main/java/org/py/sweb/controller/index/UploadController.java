@@ -16,7 +16,6 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -69,7 +68,7 @@ public class UploadController {
      * */
     @PostMapping({""})
     public String action(@RequestParam("upfs") MultipartFile[] files, String author,
-                         Model model) throws IOException {
+                         Model model) {
         List<MultipartFile> tmpList = Arrays.stream(files)
                 .filter(f -> !f.isEmpty())
                 .collect(Collectors.toList());
@@ -123,12 +122,12 @@ public class UploadController {
      * 上传文件列表展示功能
      * */
     @GetMapping({"list", "list/{offset}"})
-    public String list(HttpServletResponse response, Model model, @PathVariable(required = false) Integer offset) throws IOException {
+    public String list(Model model, @PathVariable(required = false) Integer offset) {
         offset = null == offset ? 1 : offset;
         offset = offset < 1 ? 1 : offset;
         PageHelper.offsetPage((offset - 1) * limit, limit);
         List<Upfiles> list = upfileService.selectEvery(Sort.desc);
-        PageInfo pageInfo = new PageInfo(list);
+        PageInfo<Upfiles> pageInfo = new PageInfo<>(list);
         model.addAttribute("upfiles", list);
         model.addAttribute("title", "上传文件资源");
         model.addAttribute("format", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
